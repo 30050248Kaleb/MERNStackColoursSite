@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root
+{
+    --secondarycolour: #8428fc;
+    --maincolour: #1e2024;
+    --secondarycolourdarker: #6000df;
+}
+
+html, body
+{
+    background-color: var(--maincolour);
+    font-family: "Inter Tight", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: min(1rem, 5vw);
+}
+
+h1
+{
+    color: var(--secondarycolour);
+    font-weight: 800;
+}
+
+nav
+{
+    background-color: var(--secondarycolourdarker);
+}
+
+footer
+{
+    background-color: var(--secondarycolourdarker);
+}
+
+footer p 
+{
+    margin-bottom: 0;
+}
+
+.remove-btn
+{
+    margin-left: 0.5rem;
+}
+
+.fade-enter
+{
+    opacity: 0.1;
+}
+
+.fade-enter-active
+{
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.fade-exit
+{
+    opacity: 1;
+}
+
+.fade-exit-active
+{
+    opacity: 0.01;
+    transition: opacity 1s ease-in;
+}
