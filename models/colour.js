@@ -9,7 +9,7 @@ var colourSchema = new Schema({
     "category": String,
     "type": String,
     "code": {
-        "rbga": [],
+        "rgba": [],
         "hex": String
     }
 },{collection: 'colours'},{versionKey: false});
