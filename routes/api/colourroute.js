@@ -18,25 +18,26 @@ router.get('/', function(req, res) {
         })
 });
 
+//@route    GET /api/colours/:colour?
+//@desc     Get a single colour from the database
+//@access   Public
 router.get('/:colour?', function(req, res) {
-    var colour = req.params.colour;
-    console.log(Object.keys(colour)[1]);
-    if(Object.keys(colour).length === 0)
-    {
-        res.send(`Error 404, colour "${colour}" not found.`);
-    }
-    else
-    {
-        colours.findOne({color:colour})
-        .sort({color: 1})
-        .then(function(color){
+    var requestedColour = req.params.colour;
+    colours.findOne({color:requestedColour})
+    .sort({color: 1})
+    .then(function(color){
+        if(color)
+        {
             res.json(color);
-        })
-        .catch(function(err){
-            console.log(err);
-        })
-    }
-    
+        }
+        else
+        {
+            res.send(`Error 404, colour "${requestedColour}" not found.`);
+        }
+    })
+    .catch(function(err){
+        console.log(err);
+    })
 });
 
 //@route    POST /api/colours/:colour
