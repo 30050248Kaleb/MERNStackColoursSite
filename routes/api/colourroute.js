@@ -8,7 +8,12 @@ var colours = require('../../models/colour');
 //@desc     Get all colours from the database
 //@access   Public
 router.get('/', function(req, res) {
-    colours.find()
+    var category = req.query.category;
+    var type = req.query.type;
+
+    if(category)
+    {
+        colours.find({category: category})
         .sort({color: 1})
         .then(function(color){
             res.json(color);
@@ -16,6 +21,29 @@ router.get('/', function(req, res) {
         .catch(function(err){
             console.log(err);
         })
+    }
+    else if(type)
+    {
+        colours.find({type: type})
+        .sort({color: 1})
+        .then(function(color){
+            res.json(color);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
+    else
+    {
+        colours.find()
+        .sort({color: 1})
+        .then(function(color){
+            res.json(color);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
 });
 
 //@route    GET /api/colours/:colour?
@@ -26,6 +54,11 @@ router.get('/:colour?', function(req, res) {
     colours.findOne({color:requestedColour})
     .sort({color: 1})
     .then(function(color){
+        /* Instead of checking for Object.keys, if you check whether a field such as color
+           has a value, because it is the most likely field to exist, you can find valid 
+           colours in the collection. Suggested by ChatGPT when I couldn't get Object.keys
+           to work. */
+           
         if(color)
         {
             res.json(color);
